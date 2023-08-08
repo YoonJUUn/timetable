@@ -43,7 +43,7 @@
 
         #resetButton {
             margin-bottom: 10px;
-            float: left; /* 왼쪽으로 정렬 */
+            float: left;
         }
 
         table {
@@ -167,17 +167,13 @@
                     <th>입력시간</th>
                 </tr>
             </thead>
-            <!-- 여기에 입력 결과가 자동으로 추가될 예정 -->
             <tbody>
-                <!-- 입력 결과는 이곳에 자동으로 추가됩니다 -->
             </tbody>
         </table>
     </div>
     <script>
-        // 이동일지 목록 배열
         let moveList = [];
 
-        // 이동일지 목록을 갱신하는 함수
         function refreshMoveList() {
             const tableBody = document.querySelector("#moveList tbody");
             tableBody.innerHTML = "";
@@ -189,13 +185,12 @@
                     <td>${moveData.seatNumber}</td>
                     <td>${moveData.returnTime}교시</td>
                     <td>${moveData.reason}</td>
-                    <td>${moveData.inputTime}</td>
+                    <td>${moveData.inputDate} ${moveData.inputTime}</td>
                 `;
                 tableBody.appendChild(row);
             });
         }
 
-        // 이동일지 저장 버튼 클릭 이벤트 핸들러
         document.getElementById("moveForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
@@ -212,6 +207,7 @@
             };
 
             const now = new Date();
+            moveData.inputDate = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
             moveData.inputTime = `${now.getHours()}시 ${now.getMinutes()}분`;
 
             moveList.push(moveData);
@@ -221,7 +217,6 @@
             document.getElementById("moveForm").reset();
         });
 
-        // 테이블 초기화 버튼 클릭 이벤트 핸들러
         function resetTable() {
             moveList = [];
             refreshMoveList();
