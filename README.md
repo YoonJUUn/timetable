@@ -139,6 +139,7 @@
             <option value="6">6교시</option>
             <option value="7">7교시</option>
             <option value="8">8교시</option>
+            <option value="복귀안함">복귀안함</option>
         </select><br>
 
         <label for="reason">이동사유:</label>
